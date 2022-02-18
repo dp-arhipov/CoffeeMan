@@ -1,0 +1,29 @@
+@import '../../vars';
+
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 40px;
+  @media screen and (max-width: 640px) {
+    padding: 20px;
+  }
+
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+    justify-content: center;
+    &>*{
+      margin-bottom: 20px;
+    }
+
+  }
+}

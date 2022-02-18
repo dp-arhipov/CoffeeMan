@@ -1,0 +1,20 @@
+@import '../../vars';
+
+.text-input{
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: 1px solid $color-grey-2;
+  outline: none;
+  font-size: 1rem;
+  &::placeholder{
+    color: $color-text-grey-2;
+  }
+  &__error{
+    border: 1px solid $color-error;
+  }
+  &__error-message{
+    color: $color-error;
+  }
+}
+
+

@@ -1,30 +1,21 @@
 //@import '~reset.css';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
+@import './vars.scss';
 
-$color-primary: #9DD558;
-$color-grey-1: #efefef;
-$color-grey-2: #BDBDBD;
-$color-grey-3: #9d9d9d;
-$color-text-1: black;
-$color-text-2: black;
-$color-text-3: black;
 
 
 ul {
   list-style: none;
+
+}
+a{
+  text-decoration: none;
+  color: inherit;
 }
 
 h1, h2, h3, h4, h5, h6, p, ul, li, body {
   margin: 0;
   padding: 0;
-}
-
-.wrapper {
-  background: #FFFFFF;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
-  border-radius: 20px;
-  max-width: 1080px;
-  margin: 50px auto;
 }
 
 * {
@@ -34,165 +25,45 @@ h1, h2, h3, h4, h5, h6, p, ul, li, body {
 }
 
 
-.overlay {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  z-index: 1;
-  background: rgba(0, 0, 0, 0.5);
-
-  .drawer {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 30%;
-    background: #ffffff;
-  }
-
-  .cart {
-    padding: 40px 40px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-
-    .items-list {
-      display: flex;
-      flex-direction: column;
-      overflow: auto;
-      gap: 20px;
-      margin-bottom: 40px;
-    }
-
-    &_header {
-      padding-bottom: 40px;
-    }
-
-    &_item {
-      display: flex;
-      height: 150px;
-      align-items: center;
-      gap: 20px;
-      padding: 20px;
-      border: 1px solid $color-grey-1;
-      border-radius: 20px;
-
-
-      &-description {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-
-        p {
-          margin-bottom: 10px;
-        }
-
-        span {
-          font-weight: 600;
-        }
-      }
-
-      &-btn {
-        opacity: 0.5;
-        cursor: pointer;
-
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
-
-    .cart-total {
-      justify-self: flex-end;
-      display: flex;
-      flex-direction: column;
-
-      &-description {
-        display: flex;
-        margin-bottom: 40px;
-      }
-
-      &-dots {
-        flex: 1;
-        margin: 0 10px;
-        border-bottom: 1px dashed $color-grey-3;
-      }
-
-      &-price {
-        font-weight: 600;
-      }
-
-
-
-    }
-
-
-  }
+.wrapper {
+  background: #FFFFFF;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 20px;
+  max-width: 1080px;
+  margin: 50px auto;
 }
 
 .btn{
-  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: $color-primary;
   border-radius: 20px;
   border:0;
-  padding: 20px;
-  color: white;
+  padding: 20px 40px;
+  color: $color-text-white;
   font-weight: 500;
   font-size: 16px;
 
   &:hover{
     background: lighten($color-primary, 5%);
     cursor: pointer;
-    .btn-arrow{
+    .btn-arrow-right{
       transform: translateX(5px);
     }
-  }
 
-  &-arrow{
-    position: absolute;
-    right: 30px;
-    top: 40%;
-  }
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  padding: 40px;
-  align-items: center;
-  border-bottom: 1px solid $color-grey-1;
-
-  &_left {
-    display: flex;
-    align-items: center;
-
-    img {
-      margin-right: 15px;
-    }
-
-    p {
-      color: $color-grey-3;
+    .btn-arrow-left{
+      transform: translateX(-5px);
     }
   }
 
-  &_right {
-    display: flex;
-    gap: 30px;
-
-    *{
-      cursor: pointer;
-    }
-
-    .backet {
-      img {
-        margin-right: 10px;
-      }
-    }
+  &-arrow-right{
+    margin-left: 20px;
   }
-
+  &-arrow-left{
+    margin-right: 20px;
+  }
 }
 
 .content {
@@ -206,93 +77,9 @@ h1, h2, h3, h4, h5, h6, p, ul, li, body {
   }
 }
 
-.search {
-  border: 1px solid $color-grey-1;
-  border-radius: 5px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-
-  img {
-    padding-right: 10px;
-  }
-
-  input {
-    border: 0;
-
-    &:focus {
-      outline: none;
-    }
-
-    &::placeholder {
-      color: $color-grey-3;
-    }
-  }
-}
-
 .cards {
   display: flex;
-  gap: 20px;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
-
-.card {
-  width: 33%;
-  border: 1px solid $color-grey-1;
-  border-radius: 20px;
-  padding: 40px;
-  display: flex;
-  flex-direction: column;
-
-
-  &:hover {
-    box-shadow: 0px 14px 30px rgba(0, 0, 0, 0.05);
-    transform: translateY(-5px);
-  }
-
-  &_favourite {
-    position: absolute;
-    cursor: pointer;
-  }
-
-  &_img {
-    margin-bottom: 15px;
-    align-self: center;
-  }
-
-  &_description {
-    margin-bottom: 20px;
-  }
-
-  &_bottom {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-
-
-    .price {
-      p {
-        color: $color-grey-2;
-        font-size: 11px;
-        font-weight: 500;
-      }
-
-      span {
-        font-weight: 600;
-      }
-    }
-
-    button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 32px;
-      height: 32px;
-      background: #FFFFFF;
-      border: 1px solid #F2F2F2;
-      box-sizing: border-box;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-  }
-}
-

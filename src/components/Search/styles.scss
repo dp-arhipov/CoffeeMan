@@ -1,0 +1,38 @@
+@import '../../vars';
+
+
+.search {
+  border: 1px solid $color-grey-1;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+
+
+  &_find-icon {
+    margin-right: 10px;
+    height: 15px;
+    width: 15px;
+  }
+
+  &_delete-icon{
+    margin-left: 10px;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+  }
+
+  input {
+    border: 0;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: $color-text-grey-2;
+    }
+  }
+
+
+}

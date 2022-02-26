@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.scss';
 import Card from "../Card";
 const CardList = ({items, handleCart, handleFavourite}) => {
+
     return (
         <div className="cards">
             {items.map((item) => {

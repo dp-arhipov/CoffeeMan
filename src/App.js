@@ -6,8 +6,10 @@ import './App.scss'
 import axios from "axios";
 import Wrapper from "./components/Wrapper/Wrapper";
 import Orders from "./pages/Orders/Orders";
+import Context from "./Context";
 
 const App = () => {
+
     const [goods, setGoods] = useState([]);
     const [goodsWithMarkers, setGoodsWithMarkers] = useState([]);
     const [searchParms, setSearchParms] = useState('')
@@ -40,7 +42,7 @@ const App = () => {
 
     const getItems = async () => {
         try {
-            const {data} = await axios.get('https://621630187428a1d2a35e4ba5.mockapi.io/items/?page=1&limit=10')
+            const {data} = await axios.get('https://621630187428a1d2a35e4ba5.mockapi.io/items/?page=1&limit=12')
             return data
         } catch (error) {
             console.log(error);
@@ -114,19 +116,22 @@ const App = () => {
 
 
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path='/favourites'
-                       element={<Favourites handleFavourite={handleFavourite} handleCart={handleCart}
-                                            goodsWithMarkers={goodsWithMarkers} handleOrder={handleOrder}/>}/>
-                <Route path='/orders'
-                       element={<Orders handleFavourite={handleFavourite} handleCart={handleCart}
-                                            goodsWithMarkers={goodsWithMarkers} handleOrder={handleOrder}/>}/>
-                <Route path='/' element={<Main handleFavourite={handleFavourite} handleCart={handleCart}
-                                               searchParms={searchParms} goodsWithMarkers={goodsWithMarkers}
-                                               setSearchParms={setSearchParms} handleOrder={handleOrder}/>}/>
-            </Routes>
-        </BrowserRouter>
+        <Context.Provider value={{
+            handleFavourite,
+            handleCart,
+            searchParms,
+            goodsWithMarkers,
+            setSearchParms,
+            handleOrder
+        }}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/favourites' element={<Favourites/>}/>
+                    <Route path='/orders' element={<Orders/>}/>
+                    <Route path='/' element={<Main/>}/>
+                </Routes>
+            </BrowserRouter>
+        </Context.Provider>
     );
 };
 

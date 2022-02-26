@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Link} from 'react-router-dom'
 import './styles.scss'
 import Cart from "../Cart";
+import Context from "../../Context";
 
-const Header = ({goodsWithMarkers, handleCart, handleOrder}) => {
-
+const Header = () => {
+    const {goodsWithMarkers, handleCart, handleOrder} = useContext(Context);
     const [cartIsOpen, setCartIsOpen] = useState(false);
 
     const handleCartIconClick = () => {

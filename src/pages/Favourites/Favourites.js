@@ -1,4 +1,4 @@
-import React, {Fragment, useCallback, useEffect, useState} from 'react';
+import React, {Fragment, useCallback, useContext, useEffect, useState} from 'react';
 import './styles.scss'
 
 import Header from "../../components/Header";
@@ -9,19 +9,20 @@ import CardList from "../../components/CardList";
 import Wrapper from "../../components/Wrapper";
 
 import EmptyBanner from "../../components/EmptyBanner";
+import Context from "../../Context";
 
-const Favourites = ({goodsWithMarkers, handleFavourite, handleCart, handleOrder}) => {
+const Favourites = () => {
+    const {goodsWithMarkers, handleFavourite, handleCart, handleOrder} = useContext(Context);
 
     const [goodsInFavourites, setGoodsInFavourites] = useState([]);
 
     useEffect(() => {
         setGoodsInFavourites(goodsWithMarkers.filter(item => item.isFavourite == true))
-        console.log(goodsInFavourites)
     }, [goodsWithMarkers])
 
     return (
         <Wrapper>
-            <Header goodsWithMarkers={goodsWithMarkers} handleCart={handleCart} handleOrder={handleOrder}/>
+            <Header/>
             <ContentWrapper>
                 {(goodsInFavourites.length != 0)
                     ?

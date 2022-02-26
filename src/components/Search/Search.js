@@ -3,11 +3,11 @@ import './styles.scss'
 const Search = ({setSearchParms}) => {
 
     const [inputText, setInputText] = useState('');
+
     const handleChange = (event) => {
      setInputText(event.target.value)
-
-
      }
+
      useEffect(()=>{
          setSearchParms(inputText);
      },[inputText])

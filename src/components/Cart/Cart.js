@@ -1,16 +1,24 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import './styles.scss'
 import CartItem from "./CartItem";
+import Button from "../Button";
 
-const Cart = ({onClose, onDelete, items}) => {
+const Cart = ({onClose, onDelete, items, handleOrder}) => {
 
 
     const [summ, setSumm] = useState(0);
+    const [orderNumber, setOrderNumber] = useState(null);
 
     useEffect(() => {
         setSumm(items.reduce((summ, item) => summ + parseFloat(item.price), 0))
     }, [items.length])
 
+
+    const handleOrderButton = () => {
+        const orderNumb = handleOrder();
+        setOrderNumber(orderNumb);
+
+    }
     return (
         <div className="overlay">
             <div className="drawer">
@@ -37,22 +45,32 @@ const Cart = ({onClose, onDelete, items}) => {
                                     <div className='cart_total-dots'></div>
                                     <span className='cart_total-price'>{summ}</span>
                                 </div>
-                                <button className='btn'>Оформить заказ
-                                    <img className='btn-arrow-right' src="/img/arrow-right.svg" alt=""/>
-                                </button>
+                                <Button onClick={handleOrderButton} type='arrow-right'>
+                                    Оформить заказ
+                                </Button>
                             </div>
                         </Fragment>
-                        : <div className='cart_empty'>
-                            <div className='cart_empty-wrapper'>
-                                <img src="/img/empty-backet.svg" alt=""/>
-                                <h1>Корзина пустая</h1>
-                                <p>Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
-                                <button className='btn' onClick={onClose}>
-                                    <img className='btn-arrow-left' src="/img/arrow-left.svg" alt=""/>
-                                    Вернуться назад
-                                </button>
+                        : (orderNumber)
+                            ? <div className='cart_final'>
+                                <div className='cart_final-wrapper'>
+                                    <img src="/img/order.svg" alt=""/>
+                                    <h1>Заказ #{orderNumber} оформлен </h1>
+                                    <p>Совсем скоро с вами свяжется специалист для уточнения деталей</p>
+                                    <Button onClick={onClose} type='arrow-left'>
+                                        Вернуться к покупкам
+                                    </Button>
+                                </div>
                             </div>
-                        </div>
+                            : <div className='cart_final'>
+                                <div className='cart_final-wrapper'>
+                                    <img src="/img/empty-cart.svg" alt=""/>
+                                    <h1>Корзина пустая</h1>
+                                    <p>Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
+                                    <Button onClick={onClose} type='arrow-left'>
+                                        Вернуться к покупкам
+                                    </Button>
+                                </div>
+                            </div>
                     }
                 </div>
             </div>

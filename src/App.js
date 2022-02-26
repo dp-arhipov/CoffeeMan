@@ -4,15 +4,19 @@ import Favourites from "./pages/Favourites/Favourites";
 import Main from "./pages/Main/Main";
 import './App.scss'
 import axios from "axios";
+import Wrapper from "./components/Wrapper/Wrapper";
+import Orders from "./pages/Orders/Orders";
 
 const App = () => {
     const [goods, setGoods] = useState([]);
     const [goodsWithMarkers, setGoodsWithMarkers] = useState([]);
     const [searchParms, setSearchParms] = useState('')
 
-    useEffect(async () => {
-        const goods = await getItems();
-        setGoods(goods);
+    useEffect(() => {
+        (async function () {
+            const goods = await getItems();
+            setGoods(goods);
+        }());
     }, [])
 
     useEffect(() => {
@@ -21,7 +25,8 @@ const App = () => {
                 return {
                     ...item,
                     isFavourite: false,
-                    inCart: false
+                    inCart: false,
+                    inHistory: false
                 }
             }))
         const storedItems = localStorage.getItem('storedItems');
@@ -34,14 +39,16 @@ const App = () => {
     }, [goodsWithMarkers])
 
     const getItems = async () => {
-        const responce = await axios.get('https://621630187428a1d2a35e4ba5.mockapi.io/items/?page=1&limit=5')
-            .catch(function (error) {
-                console.log(error);
-            });
-        return responce.data
+        try {
+            const {data} = await axios.get('https://621630187428a1d2a35e4ba5.mockapi.io/items/?page=1&limit=10')
+            return data
+        } catch (error) {
+            console.log(error);
+        }
+        return []
     };
 
-    const handleCart =useCallback( (action, itemId) => {
+    const handleCart = useCallback((action, itemId) => {
         if (action == 'add') {
             const newGoodsWithMarkers = goodsWithMarkers.map((item) => {
                 if (item.id == itemId) return {
@@ -89,12 +96,35 @@ const App = () => {
     })
 
 
+    const handleOrder = () => {
+        const orderNumber = Math.floor(Math.random() * 10000)
+        const newGoods = goodsWithMarkers.map(item => {
+            if (item.inCart == true) {
+                return {
+                    ...item,
+                    inCart: false,
+                    inHistory: true
+                }
+            }
+            return item
+        })
+        setGoodsWithMarkers(newGoods);
+        return orderNumber;
+    }
+
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route  path='/favourites' element={<Favourites handleFavourite={handleFavourite} handleCart={handleCart} goodsWithMarkers={goodsWithMarkers}/>}/>
-                <Route  path='/' element={<Main handleFavourite={handleFavourite} handleCart={handleCart} searchParms={searchParms} goodsWithMarkers={goodsWithMarkers} setSearchParms={setSearchParms}/>}/>
+                <Route path='/favourites'
+                       element={<Favourites handleFavourite={handleFavourite} handleCart={handleCart}
+                                            goodsWithMarkers={goodsWithMarkers} handleOrder={handleOrder}/>}/>
+                <Route path='/orders'
+                       element={<Orders handleFavourite={handleFavourite} handleCart={handleCart}
+                                            goodsWithMarkers={goodsWithMarkers} handleOrder={handleOrder}/>}/>
+                <Route path='/' element={<Main handleFavourite={handleFavourite} handleCart={handleCart}
+                                               searchParms={searchParms} goodsWithMarkers={goodsWithMarkers}
+                                               setSearchParms={setSearchParms} handleOrder={handleOrder}/>}/>
             </Routes>
         </BrowserRouter>
     );

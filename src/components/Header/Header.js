@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import './styles.scss'
 import Cart from "../Cart";
 
-const Header = ({goodsWithMarkers, handleCart}) => {
+const Header = ({goodsWithMarkers, handleCart, handleOrder}) => {
 
     const [cartIsOpen, setCartIsOpen] = useState(false);
 
@@ -19,12 +19,12 @@ const Header = ({goodsWithMarkers, handleCart}) => {
     }
 
     const computeSrollWidth = () => {
-        window.scrollTo(1,1);
+        window.scrollTo(1, 1);
         // if we have vertical scrollbar
         if (window.pageYOffset == 0) {
             return 0;
         }
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
 
         let div = document.createElement('div');
         div.style.overflowY = 'scroll';
@@ -42,7 +42,7 @@ const Header = ({goodsWithMarkers, handleCart}) => {
         <div className="header">
             {cartIsOpen &&
             <Cart onClose={handleCartIconClick} items={goodsWithMarkers.filter(item => item.inCart == true)}
-                  onDelete={handleCart}/>}
+                  onDelete={handleCart} handleOrder={handleOrder}/>}
             <Link to='/'>
                 <div className="header_left">
 
@@ -66,7 +66,9 @@ const Header = ({goodsWithMarkers, handleCart}) => {
                     </Link>
                 </li>
                 <li>
+                    <Link to={'/orders'}>
                     <img width={18} height={18} src='/img/user.svg' alt=""/>
+                    </Link>
                 </li>
             </ul>
 

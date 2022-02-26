@@ -1,0 +1,15 @@
+@import '../../vars';
+
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 40px;
+}
+
+.content-header {
+  padding-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,0 +1,33 @@
+@import '../../vars';
+
+.btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $color-primary;
+  border-radius: 20px;
+  border:0;
+  padding: 20px 40px;
+  color: $color-text-white;
+  font-weight: 500;
+  font-size: 16px;
+
+  &:hover{
+    background: lighten($color-primary, 5%);
+    cursor: pointer;
+    .btn-arrow-right{
+      transform: translateX(5px);
+    }
+
+    .btn-arrow-left{
+      transform: translateX(-5px);
+    }
+  }
+
+  &-arrow-right{
+    margin-left: 20px;
+  }
+  &-arrow-left{
+    margin-right: 20px;
+  }
+}

@@ -7,7 +7,7 @@ import ContentHeader from "../../components/Container/ContentHeader";
 import CardList from "../../components/CardList";
 import Wrapper from "../../components/Wrapper";
 import EmptyBanner from "../../components/EmptyBanner";
-import Context from "../../Context";
+import Context from "../../context";
 const Orders = () => {
     const {goodsWithMarkers, handleFavourite, handleCart, handleOrder} = useContext(Context);
     const [goodsInOrders, setGoodsInOrders] = useState([]);

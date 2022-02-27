@@ -16,7 +16,7 @@ const CardList = ({items, handleCart, handleFavourite}) => {
                             onClickPlus={handleCart}
                             inCart={item.inCart}
                             onClickFavourite={handleFavourite}
-                            isFavourite={item.isFavourite}
+                            isFavourite={item.inFavourite}
                         />
                     )
                 })

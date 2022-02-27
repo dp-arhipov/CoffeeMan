@@ -6,7 +6,7 @@ import ContentHeader from "../../components/Container/ContentHeader";
 import ContentWrapper from "../../components/Container";
 import CardList from "../../components/CardList";
 import Wrapper from "../../components/Wrapper";
-import Context from "../../Context";
+import Context from "../../context";
 
 function Main() {
     const {goodsWithMarkers, handleFavourite, handleCart, searchParms, setSearchParms} = useContext(Context);

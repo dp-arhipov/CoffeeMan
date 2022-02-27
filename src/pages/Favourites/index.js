@@ -1,2 +1,1 @@
-import Favourites from './Favourites'
-export default Favourites;
+export {default} from './Favourites'

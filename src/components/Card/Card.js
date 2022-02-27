@@ -2,7 +2,6 @@ import React, {memo, useState} from 'react'
 import './styles.scss'
 
 const Card = ({description, price, imgSource, id, inCart, isFavourite, ...props}) => {
-    console.log(inCart)
 
     const onClickPlus = () => {
         if (!inCart) props.onClickPlus('add', id);

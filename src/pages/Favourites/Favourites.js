@@ -9,15 +9,15 @@ import CardList from "../../components/CardList";
 import Wrapper from "../../components/Wrapper";
 
 import EmptyBanner from "../../components/EmptyBanner";
-import Context from "../../Context";
+import Context from "../../context";
 
 const Favourites = () => {
-    const {goodsWithMarkers, handleFavourite, handleCart, handleOrder} = useContext(Context);
+    const {goodsWithMarkers, handleFavourite, handleCart} = useContext(Context);
 
     const [goodsInFavourites, setGoodsInFavourites] = useState([]);
 
     useEffect(() => {
-        setGoodsInFavourites(goodsWithMarkers.filter(item => item.isFavourite == true))
+        setGoodsInFavourites(goodsWithMarkers.filter(item => item.inFavourite == true))
     }, [goodsWithMarkers])
 
     return (

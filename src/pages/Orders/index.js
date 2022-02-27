@@ -1,2 +1,1 @@
-import Orders from './Favourites'
-export default Orders;
+export {default} from'./Orders'

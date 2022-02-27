@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import {Link} from 'react-router-dom'
 import './styles.scss'
 import Cart from "../Cart";
-import Context from "../../Context";
+import Context from "../../context";
 
 const Header = () => {
     const {goodsWithMarkers, handleCart, handleOrder} = useContext(Context);
@@ -37,7 +37,6 @@ const Header = () => {
         div.remove();
         return scrollWidth;
     }
-
 
     return (
         <div className="header">

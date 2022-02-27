@@ -2,6 +2,7 @@ import React, {Fragment, useEffect, useState} from 'react';
 import './styles.scss'
 import CartItem from "./CartItem";
 import Button from "../Button";
+import {Link} from "react-router-dom";
 
 const Cart = ({onClose, onDelete, items, handleOrder}) => {
 
@@ -56,9 +57,11 @@ const Cart = ({onClose, onDelete, items, handleOrder}) => {
                                     <img src="/img/order.svg" alt=""/>
                                     <h1>Заказ #{orderNumber} оформлен </h1>
                                     <p>Совсем скоро с вами свяжется специалист для уточнения деталей</p>
-                                    <Button onClick={onClose} type='arrow-left'>
-                                        Вернуться к покупкам
-                                    </Button>
+                                    <Link to='/'>
+                                        <Button onClick={onClose} type='arrow-left'>
+                                            Вернуться к покупкам
+                                        </Button>
+                                    </Link>
                                 </div>
                             </div>
                             : <div className='cart_final'>
@@ -66,9 +69,11 @@ const Cart = ({onClose, onDelete, items, handleOrder}) => {
                                     <img src="/img/empty-cart.svg" alt=""/>
                                     <h1>Корзина пустая</h1>
                                     <p>Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
-                                    <Button onClick={onClose} type='arrow-left'>
-                                        Вернуться к покупкам
-                                    </Button>
+                                    <Link to='/'>
+                                        <Button onClick={onClose} type='arrow-left'>
+                                            Вернуться к покупкам
+                                        </Button>
+                                    </Link>
                                 </div>
                             </div>
                     }

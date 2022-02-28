@@ -5,4 +5,17 @@
   gap: 40px;
   flex-wrap: wrap;
   justify-content: flex-start;
+
+  @media screen and (max-width: 640px) {
+    justify-content: center;
+    gap: 10px;
+  }
+  @media screen and (max-width: 920px) {
+    justify-content: center;
+    gap: 20px;
+  }
+  @media screen and (max-width: 1080px) {
+    justify-content: center;
+    gap: 20px;
+  }
 }

@@ -15,15 +15,18 @@ const Favourites = () => {
     const {goodsWithMarkers, handleFavourite, handleCart} = useContext(Context);
 
     const [goodsInFavourites, setGoodsInFavourites] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
+        setIsLoaded(false)
         setGoodsInFavourites(goodsWithMarkers.filter(item => item.inFavourite == true))
+        setIsLoaded(true)
     }, [goodsWithMarkers])
 
     return (
         <Wrapper>
             <Header/>
-            <ContentWrapper>
+            <ContentWrapper isLoaded={isLoaded}>
                 {(goodsInFavourites.length != 0)
                     ?
                     <Fragment>

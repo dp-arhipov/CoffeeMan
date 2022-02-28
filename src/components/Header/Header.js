@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Link} from 'react-router-dom'
 import './styles.scss'
 import Cart from "../Cart";
@@ -7,6 +7,14 @@ import Context from "../../context";
 const Header = () => {
     const {goodsWithMarkers, handleCart, handleOrder} = useContext(Context);
     const [cartIsOpen, setCartIsOpen] = useState(false);
+
+    const [priceSumm, setPriceSumm] = useState(0);
+
+
+    useEffect(() => {
+        const items = goodsWithMarkers.filter(item => item.inCart == true)
+        setPriceSumm(items.reduce((summ, item) => summ + parseFloat(item.price), 0))
+    }, [goodsWithMarkers])
 
     const handleCartIconClick = () => {
         if (!cartIsOpen) {
@@ -40,9 +48,14 @@ const Header = () => {
 
     return (
         <div className="header">
+
             {cartIsOpen &&
-            <Cart onClose={handleCartIconClick} items={goodsWithMarkers.filter(item => item.inCart == true)}
-                  onDelete={handleCart} handleOrder={handleOrder}/>}
+            <Cart onClose={handleCartIconClick}
+                  items={goodsWithMarkers.filter(item => item.inCart == true)}
+                  onDelete={handleCart}
+                  handleOrder={handleOrder}
+                  priceSumm={priceSumm}/>}
+
             <Link to='/'>
                 <div className="header_left">
 
@@ -59,15 +72,15 @@ const Header = () => {
             <ul className="header_right">
                 <li className='backet' onClick={handleCartIconClick}>
                     <img width={18} height={18} src='/img/backet.svg' alt=""/>
-                    <span>1205р</span></li>
-                <li>
+                    <span>{priceSumm}</span></li>
+                <li className='heart'>
                     <Link to={'/favourites'}>
                         <img width={18} height={18} src='/img/heart.svg' alt=""/>
                     </Link>
                 </li>
-                <li>
+                <li className='user'>
                     <Link to={'/orders'}>
-                    <img width={18} height={18} src='/img/user.svg' alt=""/>
+                        <img width={18} height={18} src='/img/user.svg' alt=""/>
                     </Link>
                 </li>
             </ul>

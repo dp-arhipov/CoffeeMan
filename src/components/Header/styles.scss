@@ -7,6 +7,12 @@
   align-items: center;
   border-bottom: 1px solid $color-grey-1;
 
+  @media screen and (max-width: 640px) {
+    flex-direction: column;
+    padding:0;
+    padding-bottom: 20px;
+  }
+
   &_left {
     display: flex;
     align-items: center;
@@ -18,21 +24,39 @@
     p {
       color: $color-text-grey-2;
     }
+
+    @media screen and (max-width: 640px) {
+      padding-bottom:40px;
+    }
+
   }
 
   &_right {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 30px;
 
     *{
       cursor: pointer;
     }
 
-    .backet {
+    .backet, .heart, .user {
+      display: flex;
+      img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 10px;
+      }
+    }
+
+    .backet{
       img {
         margin-right: 10px;
       }
     }
+
   }
 
 }

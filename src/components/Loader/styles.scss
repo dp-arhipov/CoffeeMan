@@ -1,0 +1,50 @@
+@import '../../vars';
+
+
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+  .loader-body {
+    width: 4vmax;
+    height: 4vmax;
+    border-right: 4px solid $color-primary;
+    border-radius: 100%;
+    animation: spinRight 800ms linear infinite;
+
+    &:before, &:after {
+      content: '';
+      width: 3vmax;
+      height: 3vmax;
+      display: block;
+      position: absolute;
+      top: calc(50% - 1.5vmax);
+      left: calc(50% - 1.5vmax);
+      border-left: 3px solid $color-primary;
+      border-radius: 100%;
+      animation: spinLeft 800ms linear infinite;
+    }
+
+    &:after {
+      width: 2vmax;
+      height: 2vmax;
+      top: calc(50% - 1vmax);
+      left: calc(50% - 1vmax);
+      border: 0;
+      border-right: 3px solid $color-primary;
+      animation: none;
+    }
+  }
+
+@keyframes spinLeft {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(720deg);}
+}
+
+@keyframes spinRight {
+  from {transform:rotate(360deg);}
+  to {transform:rotate(0deg);}
+}

@@ -1,9 +1,11 @@
 import React from 'react';
 import './styles.scss';
-const ContentWrapper = ({children}) => {
+import Loader from "../Loader";
+
+const ContentWrapper = ({children, isLoaded=true}) => {
     return (
         <div className="content-wrapper">
-            {children}
+            {(isLoaded)? children: <Loader/>}
         </div>
     );
 };

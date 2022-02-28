@@ -12,14 +12,19 @@ function Main() {
     const {goodsWithMarkers, handleFavourite, handleCart, searchParms, setSearchParms} = useContext(Context);
 
     const [filteredGoods, setFilteredGoods] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
         const filteredGoods = goodsWithMarkers.filter(item => {
             return (searchParms != '') ? item.description.toLowerCase().includes(searchParms.toLowerCase().trim()) : true
         })
-
         setFilteredGoods(filteredGoods)
     }, [searchParms, goodsWithMarkers])
+
+    useEffect(()=>{
+        if(goodsWithMarkers.length==0) setIsLoaded(false)
+        else setIsLoaded(true);
+    },goodsWithMarkers)
 
 
     return (

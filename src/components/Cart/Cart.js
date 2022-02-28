@@ -3,22 +3,37 @@ import './styles.scss'
 import CartItem from "./CartItem";
 import Button from "../Button";
 import {Link} from "react-router-dom";
+import TextInput from "../TextInput";
 
 const Cart = ({onClose, onDelete, items, handleOrder}) => {
 
 
-    const [summ, setSumm] = useState(0);
-    const [orderNumber, setOrderNumber] = useState(null);
+    const [priceSumm, setPriceSumm] = useState(0);
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [phoneNumberError, setPhoneNumberError] = useState('');
+    const [orderNumber, setOrderNumber] = useState('');
 
     useEffect(() => {
-        setSumm(items.reduce((summ, item) => summ + parseFloat(item.price), 0))
+        setPriceSumm(items.reduce((summ, item) => summ + parseFloat(item.price), 0))
     }, [items.length])
 
 
-    const handleOrderButton = () => {
-        const orderNumb = handleOrder();
-        setOrderNumber(orderNumb);
+    const handlePhoneInput = (e) => {
+     setPhoneNumber(e.target.value)
+     }
+     //
+     useEffect(()=>{
+         if(phoneNumber.match(/^(\+)?(\(\d{2,3}\) ?\d|\d)(([ \-]?\d)|( ?\(\d{2,3}\) ?)){5,12}\d$/)) setPhoneNumberError('')
+     },[phoneNumber])
 
+    const handleOrderButton = () => {
+        if(!phoneNumber.match(/^(\+)?(\(\d{2,3}\) ?\d|\d)(([ \-]?\d)|( ?\(\d{2,3}\) ?)){5,12}\d$/)){
+            setPhoneNumberError('Введите коректный телефон')
+        }else {
+            setPhoneNumberError('')
+            const orderNumb = handleOrder();
+            setOrderNumber(orderNumb);
+        }
     }
     return (
         <div className="overlay">
@@ -35,16 +50,31 @@ const Cart = ({onClose, onDelete, items, handleOrder}) => {
                             <div className="items-list">
                                 {items.map((item) => {
                                     return (
-                                        <CartItem key={item.id} id={item.id} description={item.description}
-                                                  price={item.price} imgSource={item.imgSource} onDelete={onDelete}/>
+                                        <CartItem
+                                            key={item.id}
+                                            id={item.id}
+                                            description={item.description}
+                                            price={item.price}
+                                            imgSource={item.imgSource}
+                                            onDelete={onDelete}/>
                                     )
                                 })}
                             </div>
+
                             <div className="cart_total">
+                                <div className="cart_total-phone-input">
+                                    <TextInput
+                                        value={phoneNumber}
+                                        onChange={handlePhoneInput}
+                                        error={(phoneNumberError)}
+                                        errorMessage={phoneNumberError}
+                                        placeholder='Введите ваш номер телефона'/>
+                                </div>
+
                                 <div className='cart_total-description'>
                                     <span>Итого:</span>
                                     <div className='cart_total-dots'></div>
-                                    <span className='cart_total-price'>{summ}</span>
+                                    <span className='cart_total-price'>{priceSumm}</span>
                                 </div>
                                 <Button onClick={handleOrderButton} type='arrow-right'>
                                     Оформить заказ

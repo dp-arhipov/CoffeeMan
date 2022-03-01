@@ -3,8 +3,6 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Favourites from "./pages/Favourites";
 import Main from "./pages/Main";
 import './App.scss'
-import axios from "axios";
-import Wrapper from "./components/Wrapper/Wrapper";
 import Orders from "./pages/Orders";
 import Context from "./context";
 import useLocalStorage from "./customHooks/useLocalStorage";

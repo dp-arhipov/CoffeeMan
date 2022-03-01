@@ -4,6 +4,7 @@ import CartItem from "./CartItem";
 import Button from "../Button";
 import {Link} from "react-router-dom";
 import TextInput from "../TextInput";
+import useValidate from "../../customHooks/useValidate";
 
 const Cart = ({onClose, onDelete, items, handleOrder}) => {
 
@@ -12,28 +13,27 @@ const Cart = ({onClose, onDelete, items, handleOrder}) => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [phoneNumberError, setPhoneNumberError] = useState('');
     const [orderNumber, setOrderNumber] = useState('');
-
+    const {validate, errors} = useValidate({
+        phone: 'Введите корректный телефон'
+    });
     useEffect(() => {
         setPriceSumm(items.reduce((summ, item) => summ + parseFloat(item.price), 0))
     }, [items.length])
 
 
-    const handlePhoneInput = (e) => {
-     setPhoneNumber(e.target.value)
-     }
-     //
-     useEffect(()=>{
-         if(phoneNumber.match(/^(\+)?(\(\d{2,3}\) ?\d|\d)(([ \-]?\d)|( ?\(\d{2,3}\) ?)){5,12}\d$/)) setPhoneNumberError('')
-     },[phoneNumber])
+    useEffect(() => {
+        if (phoneNumber) validate(phoneNumber, 'phone')
+    }, [phoneNumber])
 
     const handleOrderButton = () => {
-        if(!phoneNumber.match(/^(\+)?(\(\d{2,3}\) ?\d|\d)(([ \-]?\d)|( ?\(\d{2,3}\) ?)){5,12}\d$/)){
-            setPhoneNumberError('Введите коректный телефон')
-        }else {
-            setPhoneNumberError('')
+        if (validate(phoneNumber, 'phone')) {
             const orderNumb = handleOrder();
             setOrderNumber(orderNumb);
         }
+    }
+
+    const handlePhoneInput = (e) => {
+        setPhoneNumber(e.target.value)
     }
     return (
         <div className="overlay">
@@ -66,8 +66,8 @@ const Cart = ({onClose, onDelete, items, handleOrder}) => {
                                     <TextInput
                                         value={phoneNumber}
                                         onChange={handlePhoneInput}
-                                        error={(phoneNumberError)}
-                                        errorMessage={phoneNumberError}
+                                        error={errors.phone}
+                                        errorMessage={errors.phone}
                                         placeholder='Введите ваш номер телефона'/>
                                 </div>
 

@@ -26,3 +26,4 @@ const CardList = ({items, handleCart, handleFavourite}) => {
 };
 
 export default CardList;
+

@@ -20,7 +20,7 @@
     min-width: 360px;
     background: $color-white;
 
-    @media screen and (max-width: 640px) {
+    @media screen and (max-width: 920px) {
       width: 100%;
     }
 
@@ -65,13 +65,21 @@
 
     &_item {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       height: 150px;
       align-items: center;
-      gap: 20px;
-      padding: 20px;
+      gap:40px;
+      padding: 20px 40px;
       border: 1px solid $color-grey-1;
-      border-radius: 20px;
+      border-radius: 10px;
+
+      &-img{
+        img{
+          object-fit: contain;
+          width: 50px;
+        }
+
+      }
 
       &-description {
         display: flex;
@@ -90,7 +98,7 @@
       &-btn {
         opacity: 0.5;
         cursor: pointer;
-
+        margin-left: auto;
         &:hover {
           opacity: 1;
         }
@@ -105,6 +113,11 @@
       &-phone-input {
         flex: 1;
         margin-bottom: 40px;
+        input{
+          border: 1px solid $color-grey-1;
+          border-radius: 10px;
+        }
+
       }
 
       &-description {

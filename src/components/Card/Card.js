@@ -18,12 +18,12 @@ const Card = ({description, price, imgSource, id, inCart, isFavourite, ...props}
                 <img width={32} height={32} src={(isFavourite) ? "/img/heart-liked.svg" : "/img/heart-unliked.png"}
                      alt=""/>
             </div>
-            <img className='card_img' width={133} height={112} src={imgSource} alt=""/>
+            <img className='card_img' height={160} src={imgSource} alt=""/>
             <p className='card_description'>{description}</p>
             <div className='card_bottom'>
                 <div className='price'>
                     <p>ЦЕНА</p>
-                    <span>{price}</span>
+                    <span>{price} ₽</span>
                 </div>
                 <button onClick={onClickPlus}>
                     <img width={32} height={32} src={(inCart) ? "/img/plus-pressed.svg" : "/img/plus.svg"} alt=""/>

@@ -74,7 +74,7 @@ const Cart = ({onClose, onDelete, items, handleOrder}) => {
                                 <div className='cart_total-description'>
                                     <span>Итого:</span>
                                     <div className='cart_total-dots'></div>
-                                    <span className='cart_total-price'>{priceSumm}</span>
+                                    <span className='cart_total-price'>{priceSumm}₽</span>
                                 </div>
                                 <Button onClick={handleOrderButton} type='arrow-right'>
                                     Оформить заказ
@@ -98,7 +98,7 @@ const Cart = ({onClose, onDelete, items, handleOrder}) => {
                                 <div className='cart_final-wrapper'>
                                     <img src="/img/empty-cart.svg" alt=""/>
                                     <h1>Корзина пустая</h1>
-                                    <p>Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
+                                    <p>Добавьте хотя бы одну упаковку кофе, чтобы сделать заказ.</p>
                                     <Link to='/'>
                                         <Button onClick={onClose} type='arrow-left'>
                                             Вернуться к покупкам

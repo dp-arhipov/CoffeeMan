@@ -62,8 +62,8 @@ const Header = () => {
                     <img width={40} height={40} src='/img/logo.svg' alt=""/>
 
                     <div>
-                        <h4>BEST SNIKERS</h4>
-                        <p>Магазин кроссовок</p>
+                        <h4>CoffeeMan</h4>
+                        <p>Здесь любят хороший кофе</p>
                     </div>
 
                 </div>
@@ -72,7 +72,7 @@ const Header = () => {
             <ul className="header_right">
                 <li className='backet' onClick={handleCartIconClick}>
                     <img width={18} height={18} src='/img/backet.svg' alt=""/>
-                    <span>{priceSumm}</span></li>
+                    <span>{priceSumm} ₽</span></li>
                 <li className='heart'>
                     <Link to={'/favourites'}>
                         <img width={18} height={18} src='/img/heart.svg' alt=""/>

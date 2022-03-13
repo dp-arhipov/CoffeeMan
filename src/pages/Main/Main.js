@@ -34,7 +34,7 @@ function Main() {
             <Header/>
             <ContentWrapper>
                 <ContentHeader>
-                    <h1>Все кроссовки</h1>
+                    <h1>Весь ассортимент</h1>
                     <Search setSearchParms={setSearchParms}/>
                 </ContentHeader>
                 <CardList items={filteredGoods} handleCart={handleCart} handleFavourite={handleFavourite}/>

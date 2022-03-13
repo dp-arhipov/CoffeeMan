@@ -1,5 +1,5 @@
-@import '../../vars';
-
+@import '../../styles/vars';
+@import '../../styles/mixins';
 
 .overlay {
   position: absolute;
@@ -17,12 +17,17 @@
     right: 0;
     height: 100%;
     width: 30%;
-    min-width: 360px;
-    background: $color-white;
 
-    @media screen and (max-width: 640px) {
+    background: $color-white;
+    @include mq($mq-xxxl) {
+      width: 70%;
+    }
+
+    @include mq($mq-md) {
       width: 100%;
     }
+
+
 
   }
 
@@ -32,7 +37,7 @@
     display: flex;
     flex-direction: column;
 
-    @media screen and (max-width: 640px) {
+    @include mq($mq-md) {
       padding: 20px 20px;
     }
 
@@ -43,7 +48,7 @@
       overflow: auto;
       gap: 20px;
       margin-bottom: 40px;
-      @media screen and (max-width: 640px) {
+      @include mq($mq-md) {
         margin-bottom: 20px;
       }
     }
@@ -63,40 +68,6 @@
       }
     }
 
-    &_item {
-      display: flex;
-      justify-content: space-between;
-      height: 150px;
-      align-items: center;
-      gap: 20px;
-      padding: 20px;
-      border: 1px solid $color-grey-1;
-      border-radius: 20px;
-
-      &-description {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-
-        p {
-          margin-bottom: 10px;
-        }
-
-        span {
-          font-weight: 600;
-        }
-      }
-
-      &-btn {
-        opacity: 0.5;
-        cursor: pointer;
-
-        &:hover {
-          opacity: 1;
-        }
-      }
-    }
-
     &_total {
       justify-self: flex-end;
       display: flex;
@@ -105,6 +76,11 @@
       &-phone-input {
         flex: 1;
         margin-bottom: 40px;
+        input{
+          border: 1px solid $color-grey-1;
+          border-radius: 10px;
+        }
+
       }
 
       &-description {

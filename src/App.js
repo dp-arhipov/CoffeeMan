@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useReducer, useRef, useState} from 'react';
+import React, { useEffect, useReducer, useState} from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Favourites from "./pages/Favourites";
 import Main from "./pages/Main";
@@ -8,7 +8,6 @@ import Context from "./context";
 import useLocalStorage from "./customHooks/useLocalStorage";
 import {getItems} from './services'
 import {reducer, initialState, selectors} from './store.js'
-import {useLazyLoading} from "./customHooks/useLazyLoading";
 
 const App = () => {
 
@@ -20,7 +19,6 @@ const App = () => {
     const [data, dispatch] = useReducer(reducer, initialState)
 
     useEffect(async () => {
-        console.log(storedMarkers)
         const goods = await getItems(12);
         dispatch({type: "initGoods", payload: goods})
         if (storedMarkers) dispatch({type: "loadMarkers", payload: storedMarkers})
@@ -56,25 +54,6 @@ const App = () => {
     }, [data.markers])
 
 
-    const handleCart = useCallback((action, itemId) => {
-        if (action == 'add') {
-            dispatch({type: "addItemInCart", payload: {id: itemId}})
-        }
-        if (action == 'delete') {
-            dispatch({type: "deleteItemFromCart", payload: {id: itemId}})
-        }
-    })
-
-
-    const handleFavourite = useCallback((action, itemId) => {
-        if (action == 'add') {
-            dispatch({type: "addItemToFavourite", payload: {id: itemId}})
-        }
-        if (action == 'delete') {
-            dispatch({type: "deleteItemFromFavourite", payload: {id: itemId}})
-        }
-    })
-
     const handleOrder = () => {
         const orderNumber = Math.floor(Math.random() * 10000)
         dispatch({type: "moveItemsToHistory"})
@@ -84,8 +63,6 @@ const App = () => {
     return (
 
         <Context.Provider value={{
-            handleFavourite,
-            handleCart,
             searchParms,
             goodsWithMarkers,
             setSearchParms,

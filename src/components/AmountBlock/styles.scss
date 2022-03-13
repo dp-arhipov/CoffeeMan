@@ -1,0 +1,23 @@
+@import '../../styles/vars';
+@import '../../styles/mixins';
+
+.amount-block{
+  display: flex;
+  align-items: center;
+  .amount{
+    padding: 10px;
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    background: #FFFFFF;
+    border: 1px solid #F2F2F2;
+    box-sizing: border-box;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}

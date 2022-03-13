@@ -2,7 +2,6 @@ import React, {Fragment} from 'react';
 import './styles.scss'
 
 const TextInput = ({placeholder, value, onChange, error, errorMessage}) => {
-    if (error) console.log('ошибка')
     return (
         <Fragment>
             <input className={(error) ? 'text-input text-input__error' : 'text-input'} value={value} onChange={onChange}

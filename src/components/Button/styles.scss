@@ -1,11 +1,11 @@
-@import '../../vars';
+@import '../../styles/vars';
 
 .btn{
   display: flex;
   justify-content: center;
   align-items: center;
   background: $color-primary;
-  border-radius: 20px;
+  border-radius: 10px;
   border:0;
   padding: 20px 40px;
   color: $color-text-white;

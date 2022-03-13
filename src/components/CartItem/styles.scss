@@ -1,0 +1,66 @@
+@import '../../styles/vars';
+@import '../../styles/mixins';
+
+.cart_item {
+  position: relative;
+  display: flex;
+  height: 150px;
+  align-items: center;
+  gap: 40px;
+  padding: 20px 40px;
+  border: 1px solid $color-grey-1;
+  border-radius: 10px;
+
+  &-img {
+    img {
+      object-fit: contain;
+      width: 50px;
+    }
+
+  }
+
+  &-text {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    gap: 20px;
+    @include mq($mq-xl) {
+      flex-direction: column;
+    }
+  }
+
+  &-description {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &-counters{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap:20px;
+    @include mq($mq-xl) {
+      flex-direction: row;
+    }
+    span {
+      font-weight: 600;
+    }
+  }
+
+  &-delete-btn {
+    position: absolute;
+    top: 10px;
+    right:10px;
+    height:20px;
+    opacity: 0.5;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+

@@ -1,25 +1,18 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import './styles.scss'
-import CartItem from "./CartItem";
+import CartItem from "../CartItem";
 import Button from "../Button";
 import {Link} from "react-router-dom";
 import TextInput from "../TextInput";
 import useValidate from "../../customHooks/useValidate";
 
-const Cart = ({onClose, onDelete, items, handleOrder}) => {
+const Cart = ({onClose, items, handleOrder, handleCart, priceSumm}) => {
 
-
-    const [priceSumm, setPriceSumm] = useState(0);
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [phoneNumberError, setPhoneNumberError] = useState('');
     const [orderNumber, setOrderNumber] = useState('');
     const {validate, errors} = useValidate({
         phone: 'Введите корректный телефон'
     });
-    useEffect(() => {
-        setPriceSumm(items.reduce((summ, item) => summ + parseFloat(item.price), 0))
-    }, [items.length])
-
 
     useEffect(() => {
         if (phoneNumber) validate(phoneNumber, 'phone')
@@ -53,10 +46,14 @@ const Cart = ({onClose, onDelete, items, handleOrder}) => {
                                         <CartItem
                                             key={item.id}
                                             id={item.id}
+                                            amount={item.amount}
                                             description={item.description}
                                             price={item.price}
                                             imgSource={item.imgSource}
-                                            onDelete={onDelete}/>
+                                            onClickPlus={handleCart}
+                                            onClickMinus={handleCart}
+                                            onDelete={handleCart}
+                                        />
                                     )
                                 })}
                             </div>
@@ -73,8 +70,7 @@ const Cart = ({onClose, onDelete, items, handleOrder}) => {
 
                                 <div className='cart_total-description'>
                                     <span>Итого:</span>
-                                    <div className='cart_total-dots'></div>
-                                    <span className='cart_total-price'>{priceSumm}</span>
+                                    <span className='cart_total-price'>{priceSumm}₽</span>
                                 </div>
                                 <Button onClick={handleOrderButton} type='arrow-right'>
                                     Оформить заказ
@@ -98,7 +94,7 @@ const Cart = ({onClose, onDelete, items, handleOrder}) => {
                                 <div className='cart_final-wrapper'>
                                     <img src="/img/empty-cart.svg" alt=""/>
                                     <h1>Корзина пустая</h1>
-                                    <p>Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
+                                    <p>Добавьте хотя бы одну упаковку кофе, чтобы сделать заказ.</p>
                                     <Link to='/'>
                                         <Button onClick={onClose} type='arrow-left'>
                                             Вернуться к покупкам

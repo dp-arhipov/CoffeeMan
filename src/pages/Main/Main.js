@@ -13,6 +13,7 @@ function Main() {
 
     const [filteredGoods, setFilteredGoods] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false)
+    console.log(document.getElementsByTagName('body')[0])
 
     useEffect(() => {
         const filteredGoods = goodsWithMarkers.filter(item => {
@@ -28,6 +29,7 @@ function Main() {
 
 
     return (
+
         <Wrapper>
             <Header/>
             <ContentWrapper>
@@ -38,6 +40,7 @@ function Main() {
                 <CardList items={filteredGoods} handleCart={handleCart} handleFavourite={handleFavourite}/>
             </ContentWrapper>
         </Wrapper>
+
     )
 }
 

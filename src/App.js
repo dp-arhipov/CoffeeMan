@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useReducer, useState} from 'react';
+import React, {useCallback, useEffect, useReducer, useRef, useState} from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Favourites from "./pages/Favourites";
 import Main from "./pages/Main";
@@ -8,6 +8,7 @@ import Context from "./context";
 import useLocalStorage from "./customHooks/useLocalStorage";
 import {getItems} from './services'
 import {reducer, initialState, selectors} from './store.js'
+import {useLazyLoading} from "./customHooks/useLazyLoading";
 
 const App = () => {
 
@@ -20,17 +21,31 @@ const App = () => {
 
     useEffect(async () => {
         console.log(storedMarkers)
-        const goods = await getItems();
+        const goods = await getItems(12);
         dispatch({type: "initGoods", payload: goods})
         if (storedMarkers) dispatch({type: "loadMarkers", payload: storedMarkers})
-        else  dispatch({type: "initMarkers", payload: goods})
+        else dispatch({type: "initMarkers", payload: goods})
 
+    }, [])
+
+    function checkPosition() {
+        const height = document.documentElement.scrollHeight
+        const screenHeight = window.innerHeight
+        const scrolled = window.scrollY
+
+        if (height - screenHeight == scrolled) {
+            console.log("Load some more items")
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener("scroll", checkPosition);
     }, [])
 
 
     useEffect(() => {
         const goodsWithMarkers = selectors.goodsWithMarkers(data)
-        if(goodsWithMarkers){
+        if (goodsWithMarkers) {
             setGoodsWithMarkers(goodsWithMarkers)
         }
     }, [data])
@@ -67,6 +82,7 @@ const App = () => {
     }
 
     return (
+
         <Context.Provider value={{
             handleFavourite,
             handleCart,
@@ -84,6 +100,7 @@ const App = () => {
                 </Routes>
             </BrowserRouter>
         </Context.Provider>
+
     );
 };
 

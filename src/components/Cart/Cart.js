@@ -5,21 +5,15 @@ import Button from "../Button";
 import {Link} from "react-router-dom";
 import TextInput from "../TextInput";
 import useValidate from "../../customHooks/useValidate";
+import Card from "../Card/Card";
 
-const Cart = ({onClose, onDelete, items, handleOrder}) => {
+const Cart = ({onClose, onDelete, items, handleOrder, handleCart, priceSumm}) => {
 
-
-    const [priceSumm, setPriceSumm] = useState(0);
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [phoneNumberError, setPhoneNumberError] = useState('');
     const [orderNumber, setOrderNumber] = useState('');
     const {validate, errors} = useValidate({
         phone: 'Введите корректный телефон'
     });
-    useEffect(() => {
-        setPriceSumm(items.reduce((summ, item) => summ + parseFloat(item.price), 0))
-    }, [items.length])
-
 
     useEffect(() => {
         if (phoneNumber) validate(phoneNumber, 'phone')
@@ -53,10 +47,13 @@ const Cart = ({onClose, onDelete, items, handleOrder}) => {
                                         <CartItem
                                             key={item.id}
                                             id={item.id}
+                                            amount={item.amount}
                                             description={item.description}
                                             price={item.price}
                                             imgSource={item.imgSource}
-                                            onDelete={onDelete}/>
+                                            onClickPlus={handleCart}
+                                            onClickMinus={handleCart}
+                                        />
                                     )
                                 })}
                             </div>

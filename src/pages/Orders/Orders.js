@@ -4,7 +4,7 @@ import './styles.scss'
 import Header from "../../components/Header";
 import ContentWrapper from "../../components/Container";
 import ContentHeader from "../../components/Container/ContentHeader";
-import CardList from "../../components/CardList";
+import AmountBlock from "../../components/AmountBlock";
 import Wrapper from "../../components/Wrapper";
 import EmptyBanner from "../../components/EmptyBanner";
 import Context from "../../context";
@@ -32,7 +32,7 @@ const Orders = () => {
                             <ContentHeader>
                                 <h1>Мои заказы</h1>
                             </ContentHeader>
-                            <CardList items={goodsInOrders} handleCart={handleCart} handleFavourite={handleFavourite}/>
+                            <AmountBlock items={goodsInOrders} handleCart={handleCart} handleFavourite={handleFavourite}/>
                         </Fragment>
                         :
                         <EmptyBanner

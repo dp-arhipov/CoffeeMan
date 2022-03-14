@@ -5,7 +5,7 @@ import Header from "../../components/Header";
 
 import ContentWrapper from "../../components/Container";
 import ContentHeader from "../../components/Container/ContentHeader";
-import CardList from "../../components/CardList";
+import AmountBlock from "../../components/AmountBlock";
 import Wrapper from "../../components/Wrapper";
 
 import EmptyBanner from "../../components/EmptyBanner";
@@ -33,7 +33,7 @@ const Favourites = () => {
                         <ContentHeader>
                             <h1>Мои закладки</h1>
                         </ContentHeader>
-                        <CardList items={goodsInFavourites} handleCart={handleCart} handleFavourite={handleFavourite}/>
+                        <AmountBlock items={goodsInFavourites} handleCart={handleCart} handleFavourite={handleFavourite}/>
                     </Fragment>
                     :
                     <EmptyBanner

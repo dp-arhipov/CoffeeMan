@@ -40,6 +40,7 @@
     display: flex;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
     margin-top: auto;
     .price {
       p {
@@ -51,6 +52,9 @@
       span {
         font-weight: 600;
       }
+    }
+    .amount{
+      padding: 10px;
     }
 
     button {

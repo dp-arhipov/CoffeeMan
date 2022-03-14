@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.scss';
 import Card from "../Card";
-const CardList = ({items, handleCart, handleFavourite}) => {
+const AmountBlock = ({items, handleCart, handleFavourite}) => {
 
     return (
         <div className="cards">
@@ -27,5 +27,5 @@ const CardList = ({items, handleCart, handleFavourite}) => {
     );
 };
 
-export default CardList;
+export default AmountBlock;
 

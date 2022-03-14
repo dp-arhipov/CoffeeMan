@@ -7,6 +7,7 @@ export const initialState = {
 
 export function reducer(state, action) {
     const changeProp = (itemId, propName, propValue, array = state.markers) => {
+        console.log(array)
         const newArray = array.map((item) => {
             if (item.id == itemId) return {
                 ...item,
@@ -33,7 +34,8 @@ export function reducer(state, action) {
                     id: item.id,
                     inFavourite: false,
                     inCart: false,
-                    inHistory: false
+                    inHistory: false,
+                    amount:0
                 }
             })
             console.log(markers)
@@ -50,18 +52,44 @@ export function reducer(state, action) {
             }
         }
 
-        case 'addItemInCart' : {
+        // case 'addItemInCart' : {
+        //     const itemId = action.payload.id
+        //     const markers = changeProp(itemId, 'inCart', true)
+        //
+        //     return {
+        //         ...state,
+        //         markers
+        //     }
+        // }
+
+        case 'deleteItemFromCart' : {
             const itemId = action.payload.id
-            const markers = changeProp(itemId, 'inCart', true)
+            const markers = changeProp(itemId, 'amount', 0)
             return {
                 ...state,
                 markers
             }
         }
 
-        case 'deleteItemFromCart' : {
+        case 'increaseItemAmount' : {
             const itemId = action.payload.id
-            const markers = changeProp(itemId, 'inCart', false)
+            const amount = selectors.getItem(state,itemId).amount;
+            const markers = changeProp(itemId, 'amount', amount+1)
+            return {
+                ...state,
+                markers
+            }
+        }
+
+        case 'decreaseItemAmount' : {
+            const itemId = action.payload.id
+            const amount = selectors.getItem(state,itemId).amount;
+            let markers=[];
+            if(amount>0) {
+                markers = changeProp(itemId, 'amount', amount - 1)
+            }else{
+                markers = changeProp(itemId, 'amount', 0)
+            }
             return {
                 ...state,
                 markers
@@ -122,6 +150,9 @@ export const selectors = {
             return goodsWithMarkersTemp;
         } else return null
 
+    },
+     getItem:(state, itemId)=>{
+         return state.markers.find(item=>item.id==itemId)
     }
 
 }

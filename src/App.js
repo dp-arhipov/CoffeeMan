@@ -57,12 +57,21 @@ const App = () => {
 
 
     const handleCart = useCallback((action, itemId) => {
-        if (action == 'add') {
-            dispatch({type: "addItemInCart", payload: {id: itemId}})
-        }
+        // if (action == 'add') {
+        //     dispatch({type: "addItemInCart", payload: {id: itemId}})
+        //     dispatch({type: "increaseItemAmount", payload: {id: itemId}})
+        // }
         if (action == 'delete') {
             dispatch({type: "deleteItemFromCart", payload: {id: itemId}})
         }
+
+        if (action == 'increaseItemAmount') {
+            dispatch({type: "increaseItemAmount", payload: {id: itemId}})
+        }
+        if (action == 'decreaseItemAmount') {
+            dispatch({type: "decreaseItemAmount", payload: {id: itemId}})
+        }
+
     })
 
 

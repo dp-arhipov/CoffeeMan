@@ -1,6 +1,15 @@
 import React from 'react';
 
-const CartItem = ({id, description, price, imgSource, onDelete}) => {
+const CartItem = ({id, amount, description, price, imgSource, ...props}) => {
+
+    const onClickPlus = () => {
+        props.onClickPlus('increaseItemAmount', id);
+    }
+
+    const onClickMinus = () => {
+        props.onClickMinus('decreaseItemAmount', id);
+    }
+
     return (
         <div className='cart_item'>
             <div className='cart_item-img'>
@@ -11,8 +20,16 @@ const CartItem = ({id, description, price, imgSource, onDelete}) => {
                 <p>{description}</p>
                 <span>{price} ₽</span>
             </div>
-            <img className={'cart_item-btn'} height={32} width={32} src="/img/delete.svg" onClick={()=>onDelete('delete', id)}
-                 alt=""/>
+            <button onClick={onClickMinus}>
+                -
+            </button>
+            <div className="amount">
+                {amount}
+            </div>
+
+            <button onClick={onClickPlus}>
+                +
+            </button>
 
 
         </div>

@@ -1,13 +1,18 @@
 import React, {memo, useState} from 'react'
 import './styles.scss'
 
-const Card = ({description, price, imgSource, id, inCart, isFavourite, ...props}) => {
+
+
+const Card = ({description, price, amount, imgSource, id, inCart, isFavourite, ...props}) => {
 
     const onClickPlus = () => {
-        if (!inCart) props.onClickPlus('add', id);
-        else props.onClickPlus('delete', id);
-
+        props.onClickPlus('increaseItemAmount', id);
     }
+
+    const onClickMinus = () => {
+        props.onClickMinus('decreaseItemAmount', id);
+    }
+
     const onClickFavourite = () => {
         if (!isFavourite) props.onClickFavourite('add', id);
         else props.onClickFavourite('delete', id);
@@ -25,9 +30,18 @@ const Card = ({description, price, imgSource, id, inCart, isFavourite, ...props}
                     <p>ЦЕНА</p>
                     <span>{price} ₽</span>
                 </div>
-                <button onClick={onClickPlus}>
-                    <img width={32} height={32} src={(inCart) ? "/img/plus-pressed.svg" : "/img/plus.svg"} alt=""/>
+
+                <button onClick={onClickMinus}>
+                    -
                 </button>
+                <div className="amount">
+                    {amount}
+                </div>
+
+                <button onClick={onClickPlus}>
+                    +
+                </button>
+
             </div>
         </div>
     )

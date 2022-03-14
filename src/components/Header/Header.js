@@ -12,8 +12,8 @@ const Header = () => {
 
 
     useEffect(() => {
-        const items = goodsWithMarkers.filter(item => item.inCart == true)
-        setPriceSumm(items.reduce((summ, item) => summ + parseFloat(item.price), 0))
+        const items = goodsWithMarkers.filter(item => item.amount >0)
+        setPriceSumm(items.reduce((summ, item) => summ + parseFloat(item.price*item.amount), 0))
     }, [goodsWithMarkers])
 
     const handleCartIconClick = () => {
@@ -51,9 +51,10 @@ const Header = () => {
 
             {cartIsOpen &&
             <Cart onClose={handleCartIconClick}
-                  items={goodsWithMarkers.filter(item => item.inCart == true)}
+                  items={goodsWithMarkers.filter(item => item.amount >0)}
                   onDelete={handleCart}
                   handleOrder={handleOrder}
+                  handleCart={handleCart}
                   priceSumm={priceSumm}/>}
 
             <Link to='/'>

@@ -4,9 +4,9 @@ import Search from "../../components/Search";
 import React, {useContext, useEffect, useState} from "react";
 import ContentHeader from "../../components/Container/ContentHeader";
 import ContentWrapper from "../../components/Container";
-import AmountBlock from "../../components/AmountBlock";
 import Wrapper from "../../components/Wrapper";
 import Context from "../../context";
+import CardList from "../../components/CardList/CardList";
 
 function Main() {
     const {goodsWithMarkers, handleFavourite, handleCart, searchParms, setSearchParms} = useContext(Context);
@@ -37,7 +37,8 @@ function Main() {
                     <h1>Весь ассортимент</h1>
                     <Search setSearchParms={setSearchParms}/>
                 </ContentHeader>
-                <AmountBlock items={filteredGoods} handleCart={handleCart} handleFavourite={handleFavourite}/>
+                <CardList items={filteredGoods} handleCart={handleCart} handleFavourite={handleFavourite}/>
+
             </ContentWrapper>
         </Wrapper>
 

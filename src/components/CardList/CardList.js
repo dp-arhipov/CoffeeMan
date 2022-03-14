@@ -24,6 +24,7 @@ const CardList = ({items, handleCart, handleFavourite}) => {
                 })
             }
         </div>
+
     );
 };
 

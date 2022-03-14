@@ -1,5 +1,6 @@
 import React, {memo, useState} from 'react'
 import './styles.scss'
+import AmountBlock from "../AmountBlock";
 
 
 
@@ -30,18 +31,7 @@ const Card = ({description, price, amount, imgSource, id, inCart, isFavourite, .
                     <p>ЦЕНА</p>
                     <span>{price} ₽</span>
                 </div>
-
-                <button onClick={onClickMinus}>
-                    -
-                </button>
-                <div className="amount">
-                    {amount}
-                </div>
-
-                <button onClick={onClickPlus}>
-                    +
-                </button>
-
+            <AmountBlock id={id} amount={amount} onClickMinus={onClickMinus} onClickPlus={onClickPlus}/>
             </div>
         </div>
     )

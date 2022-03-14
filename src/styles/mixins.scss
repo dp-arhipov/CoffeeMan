@@ -1,0 +1,5 @@
+@mixin mq($breakpointName) {
+  @media screen and (max-width: #{$breakpointName}) {
+    @content;
+  }
+}

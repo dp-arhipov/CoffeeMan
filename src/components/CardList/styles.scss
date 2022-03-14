@@ -1,21 +1,15 @@
-@import '../../vars';
+@import '../../styles/vars';
+@import '../../styles/mixins';
 
 .cards {
   display: flex;
-  gap: 40px;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: flex-start;
 
-  @media screen and (max-width: 640px) {
+  @include mq($mq-md) {
     justify-content: center;
     gap: 10px;
   }
-  @media screen and (max-width: 920px) {
-    justify-content: center;
-    gap: 20px;
-  }
-  @media screen and (max-width: 1080px) {
-    justify-content: center;
-    gap: 20px;
-  }
+
 }

@@ -52,6 +52,7 @@ const Cart = ({onClose, onDelete, items, handleOrder, handleCart, priceSumm}) =>
                                             imgSource={item.imgSource}
                                             onClickPlus={handleCart}
                                             onClickMinus={handleCart}
+                                            onDelete={handleCart}
                                         />
                                     )
                                 })}

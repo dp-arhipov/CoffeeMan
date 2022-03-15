@@ -19,7 +19,7 @@
     width: 30%;
 
     background: $color-white;
-    @include mq($mq-xl) {
+    @include mq($mq-xxxl) {
       width: 70%;
     }
 

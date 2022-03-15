@@ -61,7 +61,7 @@ const App = () => {
         //     dispatch({type: "addItemInCart", payload: {id: itemId}})
         //     dispatch({type: "increaseItemAmount", payload: {id: itemId}})
         // }
-        if (action == 'delete') {
+        if (action == 'deleteItemFromCart') {
             dispatch({type: "deleteItemFromCart", payload: {id: itemId}})
         }
 

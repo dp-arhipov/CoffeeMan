@@ -28,7 +28,7 @@ const Card = ({description, price, amount, imgSource, id, inCart, isFavourite, .
             <p className='card_description'>{description}</p>
             <div className='card_bottom'>
                 <div className='price'>
-                    <p>ЦЕНА</p>
+                    <p>ЦЕНА:</p>
                     <span>{price} ₽</span>
                 </div>
             <AmountBlock id={id} amount={amount} onClickMinus={onClickMinus} onClickPlus={onClickPlus}/>

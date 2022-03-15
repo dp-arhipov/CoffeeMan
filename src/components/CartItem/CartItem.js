@@ -12,6 +12,10 @@ const CartItem = ({id, amount, description, price, imgSource, ...props}) => {
         props.onClickMinus('decreaseItemAmount', id);
     }
 
+    const onDelete = () => {
+        props.onDelete('deleteItemFromCart', id);
+    }
+
     return (
         <div className='cart_item'>
             <div className='cart_item-img'>
@@ -20,12 +24,15 @@ const CartItem = ({id, amount, description, price, imgSource, ...props}) => {
             <div className="cart_item-text">
                 <div className='cart_item-description'>
                     <p>{description}</p>
-                    <span>{price} ₽</span>
+
                 </div>
-                <AmountBlock id={id} amount={amount} onClickMinus={onClickMinus} onClickPlus={onClickPlus}/>
-
+                <div className="cart_item-counters">
+                    <span>{price} ₽</span>
+                    <AmountBlock id={id} amount={amount} onClickMinus={onClickMinus} onClickPlus={onClickPlus}/>
+                </div>
             </div>
-
+            <img onClick={onDelete} className={'cart_item-delete-btn'} height={32} width={32} src="/img/delete.svg"
+                 alt=""/>
         </div>
     );
 };

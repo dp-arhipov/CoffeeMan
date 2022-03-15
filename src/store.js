@@ -7,7 +7,6 @@ export const initialState = {
 
 export function reducer(state, action) {
     const changeProp = (itemId, propName, propValue, array = state.markers) => {
-        console.log(array)
         const newArray = array.map((item) => {
             if (item.id == itemId) return {
                 ...item,
@@ -15,7 +14,6 @@ export function reducer(state, action) {
             }
             return item;
         });
-        // console.log(newArray)
         return newArray;
     }
 
@@ -38,7 +36,6 @@ export function reducer(state, action) {
                     amount:0
                 }
             })
-            console.log(markers)
             return {
                 ...state,
                 markers: markers
@@ -51,16 +48,6 @@ export function reducer(state, action) {
                 markers: action.payload
             }
         }
-
-        // case 'addItemInCart' : {
-        //     const itemId = action.payload.id
-        //     const markers = changeProp(itemId, 'inCart', true)
-        //
-        //     return {
-        //         ...state,
-        //         markers
-        //     }
-        // }
 
         case 'deleteItemFromCart' : {
             const itemId = action.payload.id

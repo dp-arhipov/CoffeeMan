@@ -19,7 +19,6 @@ const App = () => {
     const [data, dispatch] = useReducer(reducer, initialState)
 
     useEffect(async () => {
-        console.log(storedMarkers)
         const goods = await getItems(12);
         dispatch({type: "initGoods", payload: goods})
         if (storedMarkers) dispatch({type: "loadMarkers", payload: storedMarkers})

@@ -6,7 +6,7 @@
   flex: 1;
   flex-direction: column;
   padding: 40px;
-  @include mq($mq-md) {
+  @include mq($mq-sm) {
     padding: 20px;
   }
 

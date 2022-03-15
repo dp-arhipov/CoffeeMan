@@ -116,10 +116,10 @@ export function reducer(state, action) {
 
         case 'moveItemsToHistory' : {
             const markers = state.markers.map(item => {
-                if (item.inCart == true) {
+                if (item.amount > 0) {
                     return {
                         ...item,
-                        inCart: false,
+                        amount: 0,
                         inHistory: true
                     }
                 }

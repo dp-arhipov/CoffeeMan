@@ -70,7 +70,6 @@ const Cart = ({onClose, onDelete, items, handleOrder, handleCart, priceSumm}) =>
 
                                 <div className='cart_total-description'>
                                     <span>Итого:</span>
-                                    <div className='cart_total-dots'></div>
                                     <span className='cart_total-price'>{priceSumm}₽</span>
                                 </div>
                                 <Button onClick={handleOrderButton} type='arrow-right'>

@@ -10,6 +10,8 @@ import Wrapper from "../../components/Wrapper";
 
 import EmptyBanner from "../../components/EmptyBanner";
 import Context from "../../context";
+import CardList from "../../components/CardList";
+import Card from "../../components/Card/Card";
 
 const Favourites = () => {
     const {goodsWithMarkers, handleFavourite, handleCart} = useContext(Context);
@@ -33,7 +35,27 @@ const Favourites = () => {
                         <ContentHeader>
                             <h1>Мои закладки</h1>
                         </ContentHeader>
-                        <AmountBlock items={goodsInFavourites} handleCart={handleCart} handleFavourite={handleFavourite}/>
+                        <CardList>
+                            {goodsInFavourites.map((item) => {
+                                return (
+                                    <Card
+                                        key={item.id}
+                                        id={item.id}
+                                        amount={item.amount}
+                                        description={item.description}
+                                        price={item.price}
+                                        imgSource={item.imgSource}
+                                        onClickPlus={handleCart}
+                                        onClickMinus={handleCart}
+                                        inCart={item.inCart}
+                                        onClickFavourite={handleFavourite}
+                                        isFavourite={item.inFavourite}
+                                    />
+                                )
+                            })
+                            }
+                        </CardList>
+
                     </Fragment>
                     :
                     <EmptyBanner

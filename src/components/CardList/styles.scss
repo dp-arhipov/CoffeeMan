@@ -3,13 +3,10 @@
 
 .cards {
   display: flex;
-  gap: 20px;
+  gap:20px;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-evenly;
 
-  @include mq($mq-md) {
-    justify-content: center;
-    gap: 10px;
-  }
+
 
 }

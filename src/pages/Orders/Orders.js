@@ -4,10 +4,11 @@ import './styles.scss'
 import Header from "../../components/Header";
 import ContentWrapper from "../../components/Container";
 import ContentHeader from "../../components/Container/ContentHeader";
-import AmountBlock from "../../components/AmountBlock";
 import Wrapper from "../../components/Wrapper";
 import EmptyBanner from "../../components/EmptyBanner";
 import Context from "../../context";
+import CardList from "../../components/CardList";
+import Card from "../../components/Card/Card";
 
 
 const Orders = () => {
@@ -30,9 +31,28 @@ const Orders = () => {
                         ?
                         <Fragment>
                             <ContentHeader>
-                                <h1>Мои заказы</h1>
+                                <h1>Мои покупки</h1>
                             </ContentHeader>
-                            <AmountBlock items={goodsInOrders} handleCart={handleCart} handleFavourite={handleFavourite}/>
+                            <CardList>
+                                {goodsInOrders.map((item) => {
+                                    return (
+                                        <Card
+                                            key={item.id}
+                                            id={item.id}
+                                            amount={item.amount}
+                                            description={item.description}
+                                            price={item.price}
+                                            imgSource={item.imgSource}
+                                            onClickPlus={handleCart}
+                                            onClickMinus={handleCart}
+                                            inCart={item.inCart}
+                                            onClickFavourite={handleFavourite}
+                                            isFavourite={item.inFavourite}
+                                        />
+                                    )
+                                })
+                                }
+                            </CardList>
                         </Fragment>
                         :
                         <EmptyBanner

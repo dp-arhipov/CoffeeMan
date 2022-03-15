@@ -7,6 +7,8 @@ import ContentWrapper from "../../components/Container";
 import Wrapper from "../../components/Wrapper";
 import Context from "../../context";
 import CardList from "../../components/CardList/CardList";
+import Card from "../../components/Card/Card";
+import CardWithAmount from "../../components/Card/CardWithAmount";
 
 function Main() {
     const {goodsWithMarkers, handleFavourite, handleCart, searchParms, setSearchParms} = useContext(Context);
@@ -37,7 +39,26 @@ function Main() {
                     <h1>Весь ассортимент</h1>
                     <Search setSearchParms={setSearchParms}/>
                 </ContentHeader>
-                <CardList items={filteredGoods} handleCart={handleCart} handleFavourite={handleFavourite}/>
+                <CardList>
+                    {filteredGoods.map((item) => {
+                        return (
+                            <CardWithAmount
+                                key={item.id}
+                                id={item.id}
+                                amount={item.amount}
+                                description={item.description}
+                                price={item.price}
+                                imgSource={item.imgSource}
+                                onClickPlus={handleCart}
+                                onClickMinus={handleCart}
+                                inCart={item.inCart}
+                                onClickFavourite={handleFavourite}
+                                isFavourite={item.inFavourite}
+                            />
+                        )
+                    })
+                    }
+                </CardList>
 
             </ContentWrapper>
         </Wrapper>

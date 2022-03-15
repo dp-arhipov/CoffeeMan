@@ -1,4 +1,6 @@
 import React from 'react';
+import './styles.scss'
+import AmountBlock from "../AmountBlock";
 
 const CartItem = ({id, amount, description, price, imgSource, ...props}) => {
 
@@ -15,22 +17,14 @@ const CartItem = ({id, amount, description, price, imgSource, ...props}) => {
             <div className='cart_item-img'>
                 <img width={50} src={imgSource} alt=""/>
             </div>
+            <div className="cart_item-text">
+                <div className='cart_item-description'>
+                    <p>{description}</p>
+                    <span>{price} ₽</span>
+                </div>
+                <AmountBlock id={id} amount={amount} onClickMinus={onClickMinus} onClickPlus={onClickPlus}/>
 
-            <div className='cart_item-description'>
-                <p>{description}</p>
-                <span>{price} ₽</span>
             </div>
-            <button onClick={onClickMinus}>
-                -
-            </button>
-            <div className="amount">
-                {amount}
-            </div>
-
-            <button onClick={onClickPlus}>
-                +
-            </button>
-
 
         </div>
     );

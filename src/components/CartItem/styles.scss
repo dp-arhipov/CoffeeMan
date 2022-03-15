@@ -1,0 +1,55 @@
+@import '../../styles/vars';
+@import '../../styles/mixins';
+
+.cart_item {
+  display: flex;
+  justify-content: flex-start;
+  height: 150px;
+  align-items: center;
+  gap: 40px;
+  padding: 20px 40px;
+  border: 1px solid $color-grey-1;
+  border-radius: 10px;
+
+  &-img {
+    img {
+      object-fit: contain;
+      width: 50px;
+    }
+
+  }
+
+  &-text {
+    display: flex;
+    gap: 20px;
+    @include mq($mq-md) {
+      flex-direction: column;
+    }
+  }
+
+  &-description {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    span {
+      font-weight: 600;
+    }
+  }
+
+  &-btn {
+    opacity: 0.5;
+    cursor: pointer;
+    margin-left: auto;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+

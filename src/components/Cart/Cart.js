@@ -1,11 +1,10 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import './styles.scss'
-import CartItem from "./CartItem";
+import CartItem from "../CartItem";
 import Button from "../Button";
 import {Link} from "react-router-dom";
 import TextInput from "../TextInput";
 import useValidate from "../../customHooks/useValidate";
-import Card from "../Card/Card";
 
 const Cart = ({onClose, onDelete, items, handleOrder, handleCart, priceSumm}) => {
 

@@ -60,7 +60,7 @@ const Header = () => {
             <Link to='/'>
                 <div className="header_left">
 
-                    <img width={40} height={40} src='/img/logo.svg' alt=""/>
+                    <img width={40} height={40} src='/img/logo.png' alt=""/>
 
                     <div>
                         <h4>CoffeeMan</h4>

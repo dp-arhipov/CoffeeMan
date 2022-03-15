@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import TextInput from "../TextInput";
 import useValidate from "../../customHooks/useValidate";
 
-const Cart = ({onClose, onDelete, items, handleOrder, handleCart, priceSumm}) => {
+const Cart = ({onClose, items, handleOrder, handleCart, priceSumm}) => {
 
     const [phoneNumber, setPhoneNumber] = useState('');
     const [orderNumber, setOrderNumber] = useState('');

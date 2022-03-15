@@ -1,4 +1,4 @@
-import React, {Fragment, useCallback, useContext, useEffect, useState} from 'react';
+import React, {Fragment, useContext, useEffect, useState} from 'react';
 import './styles.scss'
 
 import Header from "../../components/Header";
@@ -7,12 +7,12 @@ import ContentHeader from "../../components/Container/ContentHeader";
 import Wrapper from "../../components/Wrapper";
 import EmptyBanner from "../../components/EmptyBanner";
 import Context from "../../context";
-import CardList from "../../components/CardList";
+import CardList from "../../components/CardList/CardList";
 import Card from "../../components/Card/Card";
 
 
 const Orders = () => {
-    const {goodsWithMarkers, handleFavourite, handleCart, handleOrder} = useContext(Context);
+    const {goodsWithMarkers, handleFavourite} = useContext(Context);
     const [goodsInOrders, setGoodsInOrders] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false)
 
@@ -43,11 +43,10 @@ const Orders = () => {
                                             description={item.description}
                                             price={item.price}
                                             imgSource={item.imgSource}
-                                            onClickPlus={handleCart}
-                                            onClickMinus={handleCart}
                                             inCart={item.inCart}
                                             onClickFavourite={handleFavourite}
                                             isFavourite={item.inFavourite}
+                                            needAmount={false}
                                         />
                                     )
                                 })

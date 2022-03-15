@@ -7,11 +7,10 @@ import ContentWrapper from "../../components/Container";
 import Wrapper from "../../components/Wrapper";
 import Context from "../../context";
 import CardList from "../../components/CardList/CardList";
-import Card from "../../components/Card/Card";
-import CardWithAmount from "../../components/Card/CardWithAmount";
+import Card from "../../components/Card";
 
 function Main() {
-    const {goodsWithMarkers, handleFavourite, handleCart, searchParms, setSearchParms} = useContext(Context);
+    const {goodsWithMarkers, handleFavourite, searchParms, setSearchParms} = useContext(Context);
 
     const [filteredGoods, setFilteredGoods] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false)
@@ -27,14 +26,14 @@ function Main() {
     useEffect(()=>{
         if(goodsWithMarkers.length==0) setIsLoaded(false)
         else setIsLoaded(true);
-    },goodsWithMarkers)
+    },[goodsWithMarkers])
 
 
     return (
 
         <Wrapper>
             <Header/>
-            <ContentWrapper>
+            <ContentWrapper isLoaded={isLoaded}>
                 <ContentHeader>
                     <h1>Весь ассортимент</h1>
                     <Search setSearchParms={setSearchParms}/>
@@ -42,18 +41,17 @@ function Main() {
                 <CardList>
                     {filteredGoods.map((item) => {
                         return (
-                            <CardWithAmount
+                            <Card
                                 key={item.id}
                                 id={item.id}
                                 amount={item.amount}
                                 description={item.description}
                                 price={item.price}
                                 imgSource={item.imgSource}
-                                onClickPlus={handleCart}
-                                onClickMinus={handleCart}
                                 inCart={item.inCart}
                                 onClickFavourite={handleFavourite}
                                 isFavourite={item.inFavourite}
+                                needAmount={true}
                             />
                         )
                     })

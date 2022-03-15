@@ -1,26 +1,29 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './styles.scss';
+import Context from "../../context";
 
-const AmountBlock = ({id, amount, ...props}) => {
+const AmountBlock = ({id, amount}) => {
 
-    const onClickPlus = () => {
-        props.onClickPlus('increaseItemAmount', id);
+    const {dispatch} = useContext(Context);
+
+    const onClickPlus = (itemId) => {
+        dispatch({type: "increaseItemAmount", payload: {id: itemId}})
     }
 
-    const onClickMinus = () => {
-        props.onClickMinus('decreaseItemAmount', id);
+    const onClickMinus = (itemId) => {
+        dispatch({type: "decreaseItemAmount", payload: {id: itemId}})
     }
 
     return (
         <div class={'amount-block'}>
-            <button onClick={onClickMinus}>
+            <button onClick={()=>onClickMinus(id)}>
                 -
             </button>
             <div className="amount">
                 {amount}
             </div>
 
-            <button onClick={onClickPlus}>
+            <button onClick={()=>onClickPlus(id)}>
                 +
             </button>
         </div>

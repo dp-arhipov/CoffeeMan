@@ -1,19 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import './styles.scss'
 import AmountBlock from "../AmountBlock";
+import Context from "../../context";
 
-const CartItem = ({id, amount, description, price, imgSource, ...props}) => {
+const CartItem = ({id, amount, description, price, imgSource}) => {
 
-    const onClickPlus = () => {
-        props.onClickPlus('increaseItemAmount', id);
-    }
+    const {dispatch} = useContext(Context);
 
-    const onClickMinus = () => {
-        props.onClickMinus('decreaseItemAmount', id);
-    }
 
-    const onDelete = () => {
-        props.onDelete('deleteItemFromCart', id);
+    const onDelete = (itemId=id) => {
+        dispatch({type: "deleteItemFromCart", payload: {id: itemId}})
     }
 
     return (
@@ -28,10 +24,10 @@ const CartItem = ({id, amount, description, price, imgSource, ...props}) => {
                 </div>
                 <div className="cart_item-counters">
                     <span>{price} ₽</span>
-                    <AmountBlock id={id} amount={amount} onClickMinus={onClickMinus} onClickPlus={onClickPlus}/>
+                    <AmountBlock id={id} amount={amount} />
                 </div>
             </div>
-            <img onClick={onDelete} className={'cart_item-delete-btn'} height={32} width={32} src="/img/delete.svg"
+            <img onClick={()=>onDelete(id)} className={'cart_item-delete-btn'} height={32} width={32} src="/img/delete.svg"
                  alt=""/>
         </div>
     );

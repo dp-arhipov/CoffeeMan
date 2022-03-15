@@ -1,20 +1,19 @@
-import React, {Fragment, useCallback, useContext, useEffect, useState} from 'react';
+import React, {Fragment, useContext, useEffect, useState} from 'react';
 import './styles.scss'
 
 import Header from "../../components/Header";
 
 import ContentWrapper from "../../components/Container";
 import ContentHeader from "../../components/Container/ContentHeader";
-import AmountBlock from "../../components/AmountBlock";
 import Wrapper from "../../components/Wrapper";
 
 import EmptyBanner from "../../components/EmptyBanner";
 import Context from "../../context";
-import CardList from "../../components/CardList";
+import CardList from "../../components/CardList/CardList";
 import Card from "../../components/Card/Card";
 
 const Favourites = () => {
-    const {goodsWithMarkers, handleFavourite, handleCart} = useContext(Context);
+    const {goodsWithMarkers, handleFavourite} = useContext(Context);
 
     const [goodsInFavourites, setGoodsInFavourites] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false)
@@ -24,6 +23,7 @@ const Favourites = () => {
         setGoodsInFavourites(goodsWithMarkers.filter(item => item.inFavourite == true))
         setIsLoaded(true)
     }, [goodsWithMarkers])
+
 
     return (
         <Wrapper>
@@ -45,11 +45,10 @@ const Favourites = () => {
                                         description={item.description}
                                         price={item.price}
                                         imgSource={item.imgSource}
-                                        onClickPlus={handleCart}
-                                        onClickMinus={handleCart}
                                         inCart={item.inCart}
                                         onClickFavourite={handleFavourite}
                                         isFavourite={item.inFavourite}
+                                        needAmount={false}
                                     />
                                 )
                             })

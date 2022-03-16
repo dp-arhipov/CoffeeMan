@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState} from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Favourites from "./pages/Favourites";
-import Main from "./pages/Main";
+import Main from "./pages/Main/Main";
 import './App.scss'
 import Orders from "./pages/Orders";
 import Context from "./context";

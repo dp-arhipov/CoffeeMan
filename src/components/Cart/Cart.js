@@ -70,7 +70,7 @@ const Cart = ({onClose, items, handleOrder, handleCart, priceSumm}) => {
 
                                 <div className='cart_total-description'>
                                     <span>Итого:</span>
-                                    <span className='cart_total-price'>{priceSumm}₽</span>
+                                    <span className='cart_total-price'>{priceSumm} ₽</span>
                                 </div>
                                 <Button onClick={handleOrderButton} type='arrow-right'>
                                     Оформить заказ

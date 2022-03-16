@@ -13,7 +13,8 @@
 
   &-img {
     img {
-      object-fit: contain;
+      object-fit: cover;
+      height: 100%;
       width: 50px;
     }
 
@@ -41,8 +42,12 @@
     align-items: center;
     justify-content: space-between;
     gap:20px;
+
     @include mq($mq-xl) {
       flex-direction: row;
+    }
+    @include mq($mq-sm) {
+      font-size: 14px;
     }
     span {
       font-weight: 600;

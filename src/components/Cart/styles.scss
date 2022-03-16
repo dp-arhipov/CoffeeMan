@@ -2,6 +2,7 @@
 @import '../../styles/mixins';
 
 .overlay {
+
   position: absolute;
   top: 0;
   left: 0;
@@ -9,6 +10,9 @@
   width: 100%;
   z-index: 1;
   background: rgba($color-black, 0.5);
+  @include mq($mq-md) {
+    background: inherit;
+  }
 
 
   .drawer {
@@ -85,7 +89,9 @@
 
       &-description {
         display: flex;
+        justify-content: space-between;
         margin-bottom: 40px;
+
       }
 
       &-dots {
